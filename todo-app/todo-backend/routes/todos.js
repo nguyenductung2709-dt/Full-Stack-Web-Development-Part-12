@@ -1,6 +1,7 @@
 const express = require('express');
 const { Todo } = require('../mongo')
 const router = express.Router();
+const middleware = require('../util/middleware');
 
 /* GET todos listing. */
 router.get('/', async (_, res) => {
@@ -9,12 +10,17 @@ router.get('/', async (_, res) => {
 });
 
 /* POST todo to listing. */
-router.post('/', async (req, res) => {
-  const todo = await Todo.create({
-    text: req.body.text,
-    done: false
-  })
-  res.send(todo);
+router.post('/', middleware.incrementTodoCounter, async (req, res) => {
+  try {
+      const todo = await Todo.create({
+          text: req.body.text,
+          done: false
+      });
+      res.send(todo);
+  } catch (error) {
+      console.error('Error creating todo:', error);
+      res.status(500).send('Internal Server Error');
+  }
 });
 
 const singleRouter = express.Router();

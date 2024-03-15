@@ -4,7 +4,7 @@ const cors = require('cors');
 
 const indexRouter = require('./routes/index');
 const todosRouter = require('./routes/todos');
-const redisRouter = require('./redis/index'); // Assuming you named the file statistics.js
+const redisRouter = require('./routes/statistics'); // Assuming you named the file statistics.js
 
 const app = express();
 
