@@ -3,6 +3,7 @@ import axios from '../util/apiClient'
 
 import List from './List'
 import Form from './Form'
+import Title from './Title'
 
 const TodoView = () => {
   const [todos, setTodos] = useState([])
@@ -36,7 +37,7 @@ const TodoView = () => {
 
   return (
     <>
-      <h1>Todos</h1>
+      <Title title = "Todos" />
       <Form createTodo={createTodo} />
       <List todos={todos} deleteTodo={deleteTodo} completeTodo={completeTodo} />
     </>
