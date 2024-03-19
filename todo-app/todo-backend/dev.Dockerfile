@@ -1,6 +1,6 @@
 FROM node:16
 
-WORKDIR /usr/src/app
+WORKDIR /usr/src/app/todo-backend
 
 COPY --chown=node:node . .
 RUN npm install
